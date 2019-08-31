@@ -4,12 +4,16 @@ class ProductsController < ApplicationController
         render json: @products
     end
 
+    def show
+        @product = Product.find(params[:id])
+        render json: @product
+    end
+
     def create
         @product = Product.create(product: params[:product])
         render json: @product
     end
 
-    def 
     def update
         @product = Product.find(params[:id])
         @product.update_attributes(product: params[:product])
