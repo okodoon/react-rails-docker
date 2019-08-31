@@ -60,7 +60,6 @@ class MainContainer extends React.Component {
     })
     .catch((data) =>{
       console.log(data)
-      console.log("もしかしてこっち来てる?")
     })
   }
 
