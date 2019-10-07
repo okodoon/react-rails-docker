@@ -29,7 +29,8 @@ class MainContainer extends React.Component {
   createProduct = (product) => {
     axios.post('http://localhost:3000/products',{product: product} )
     .then((response) => {
-      // update(要素, 更新する値)
+      // https://qiita.com/park-jh/items/6166434f80bc186f8c77
+      // this.state.productsにrails側のcreateアクションのresponseを追加したものをnewDataとする（要質問）
       const newData = update(this.state.products, {$push:[response.data]})
       this.setState({products: newData})
     })
@@ -41,7 +42,11 @@ class MainContainer extends React.Component {
   deleateProduct = (id) => {
     axios.delete(`http://localhost:3000/products/${id}`)
     .then((response) => {
+      // 削除対象のIndex番号を取得, Arrayオブジェクトの関数であるfindIndex関数を用いている 
+      // findIndexメソッドは配列内の要素が指定されたテスト関数を満たす場合に配列内のインデックスを返す。falseなら-1を返す
+      // x => x.id === id　がテスト関数に当たり、findIndex関数の引数となっている。テスト関数を満たすもの = 要素のidが叩いたurlのidと一致した場合のインデックス番号を返している。
       const productIndex = this.state.products.findIndex(x => x.id === id)
+      // this.state.productsから上で取得したインデックスから１つ分を取り除いたものをdeleteProductsという変数にする（要質問）
       const deletedProducts = update(this.state.products, {$splice: [[productIndex, 1]]})
       this.setState({products: deletedProducts})
       console.log('set')
@@ -55,8 +60,10 @@ class MainContainer extends React.Component {
     axios.put(`http://localhost:3000/products/${id}`,{product: product})
     .then((response) => {
       const productIndex = this.state.products.findIndex(x => x.id === id)
-      const products = update(this.state.products, {[productIndex]: {$set: response.data}})
-      this.setState({products: products})
+      // productIndex(対象のインデックス番号)の位置にresponse.dataをsetしている？（文法がよくわからない）
+      const updatedProducts = update(this.state.products, {[productIndex]: {$set: response.data}})
+      // productsにupdateProductsをsetStateする。
+      this.setState({products: updatedProducts})
     })
     .catch((data) =>{
       console.log(data)

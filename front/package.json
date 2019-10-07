@@ -11,7 +11,14 @@
     "react-dom": "^16.9.0",
     "react-scripts": "0.9.x"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/react": "^16.9.5",
+    "@types/react-dom": "^16.9.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.3"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
