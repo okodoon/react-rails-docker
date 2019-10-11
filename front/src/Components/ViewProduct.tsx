@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button} from 'react-bootstrap'
 
-class ViewProduct extends React.Component {
+class ViewProduct extends React.Component<{}> {
     constructor(props) {
         super(props)
         this.state = {

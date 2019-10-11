@@ -4,7 +4,15 @@ services:
   db:
     image: postgres:10.4
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - $PWD/docker/db/init:/docker-entrypoint-initdb.d
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword1234
+      - PGPASSWORD=mysecretpassword1234
+      - POSTGRES_DB=testdb
+      - DATABASE_HOST=localhost
   api:
     build: ./api
     command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"

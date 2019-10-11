@@ -3,16 +3,16 @@ default: &default
   encoding: unicode
   host: db
   username: postgres
-  password:
+  password: mysecretpassword1234
   pool: 5
 
 development:
   <<: *default
-  database: api_dev
+  database: testdb
 
 test:
   <<: *default
-  database: api_test
+  database: testdb
 
 production:
   <<: *default
