@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import MainContainer from './Components/MainContainer'
-import './App.css';
+import SignInContainer from './Components/SignInContainer'
 
 class App extends Component {
   public render() {
     return (
       <div className="App">
-        <MainContainer/>
+        <SignInContainer />
       </div>
     );
   }
