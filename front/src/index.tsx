@@ -1,18 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import SignInContainer from './Components/SignInContainer'
-// import App from './App';
-import Counter from './counter/Container'
-import './index.css';
-import registerServiceWorker from './registerServiceWorker';
-import store from './store'
+import App from './App';
+import configureStore, {history} from './configureStore'
+
+const store = configureStore({})
 
 ReactDOM.render(
-  <Provider store={store}>
-    <SignInContainer />
-    <Counter />
+  <Provider store={ store }>
+    <App history={history}/>
   </Provider>,
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root')
 );
-registerServiceWorker();

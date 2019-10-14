@@ -23,6 +23,8 @@ class SignInContainer extends React.Component<{}> {
     axios.post('http://localhost:3000/v1/users/signin', { email, password } )
     .then((response) => {
       console.log(response)
+      console.log(response.data.email)
+      console.log(response.data.token)
       // if response.token exist
       // response.email
     }).catch((error) => {

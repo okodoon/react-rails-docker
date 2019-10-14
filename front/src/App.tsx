@@ -1,14 +1,31 @@
-import React, { Component } from 'react';
-import SignInContainer from './Components/SignInContainer'
+import { ConnectedRouter } from 'connected-react-router'
+import {History} from 'history'
+import React from 'react'
+import routes from './routes'
 
-class App extends Component {
-  public render() {
-    return (
-      <div className="App">
-        <SignInContainer />
-      </div>
-    );
-  }
+interface AppProps {
+  history: History;
 }
 
-export default App;
+const App = ({history}: AppProps) => {
+  return (
+    <ConnectedRouter history={history}>
+      { routes }
+    </ConnectedRouter>
+  )
+}
+
+export default App
+
+/*
+const Top = (props:any) => (
+  <button onClick={props.pushClicked}>button</button>
+)
+const Second = () => (
+  <p>second page</p>
+)
+
+const mapDispatchToProps = {
+  pushClicked: (dispatch:any) => dispatch(push("/second")),
+}
+const TopContainer = connect(null, mapDispatchToProps)(Top) */
