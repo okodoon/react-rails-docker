@@ -1,16 +1,22 @@
+import { push } from 'connected-react-router'
 import * as React from 'react';
-import { Container, Label } from 'semantic-ui-react';
+import { connect } from 'react-redux'
 
-// const range = (n: number) => (n < 0 ? [] : Array.from(Array(n), (_, i) => i));
+import './App.css'
 
-export interface CounterHistoryProps {
-  count?: number;
-}
+const CounterHistory = (props:any) => (
+  <div onClick={props.push} className="modal_wrapper">
+    {props.history}
+    dfsafsadf
+  </div>
+)
 
-const CounterHistory: React.SFC<CounterHistoryProps> = ({ count = 0 }) => (
-  <Container className="beads-box">
-    <Label >aaa</Label>
-  </Container>
-);
+const mapStateToProps = (state:any) => ({
+  history: state.count.history,
+})
 
-export default CounterHistory;
+const mapDispatchToProps = (dispatch:any) => ({
+  push: () => dispatch(push('/counter'))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CounterHistory)

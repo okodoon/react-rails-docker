@@ -6,6 +6,10 @@ import configureStore, {history} from './configureStore'
 
 const store = configureStore({})
 
+store.subscribe(() =>
+  console.log(store.getState())
+)
+
 ReactDOM.render(
   <Provider store={ store }>
     <App history={history}/>

@@ -1,16 +1,20 @@
 import React from 'react'
 import {Button,FormControl,FormGroup} from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { login } from '../actions/user'
 
 interface Status {
   email: string,
-  password: string
+  password: string,
+  message: string
 }
 class FormContainer extends React.Component<any, Status> {
   constructor(props:any) {
     super(props)
     this.state = {
       email: '',
-      password: ''
+      message: '',
+      password: '',
     }
   }
 
@@ -23,8 +27,7 @@ class FormContainer extends React.Component<any, Status> {
   }
   public hundleSubmit = (e:any, type:string):void => {
     if(type === "login"){
-      this.props.loginUser(this.state.email, this.state.password)
-      // リダイレクト
+      this.props.login(this.state.email, this.state.password)
     }
   }
 
@@ -59,4 +62,13 @@ class FormContainer extends React.Component<any, Status> {
   }
 }
 
-export default FormContainer
+const mapStateToProps = (state:any) => ({
+  isPlusmode: state.count.isPlusmode,
+  num: state.count.num,
+})
+
+const mapDispatchToProps = (dispatch:any) => ({
+  login: (email:string, password:string) => dispatch(login(email, password)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormContainer)

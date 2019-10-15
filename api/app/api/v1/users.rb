@@ -19,6 +19,7 @@ module V1
       params do
         requires :email, type: String
         requires :password, type: String
+        requires :name, type: String
       end
       post '/signup' do
         @user = User.new(declared(params))

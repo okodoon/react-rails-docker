@@ -1,13 +1,15 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Counter from '../components/Counter'
-import SignInContainer from '../components/SignInContainer'
+import CounterHistory from '../components/CounterHistory'
+import FormContainer from '../components/FormContainer'
 
 const routes = (
   <div>
     <Switch>
-      <Route path="/login" component={SignInContainer} />
+      <Route path="/login" component={FormContainer} />
       <Route path="/counter" component={Counter} />
+      <Route path="/history" component={CounterHistory} />
     </Switch>
   </div>
 )
