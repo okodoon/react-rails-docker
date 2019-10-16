@@ -1,13 +1,19 @@
 import { push } from 'connected-react-router'
 import * as React from 'react';
 import { connect } from 'react-redux'
+import Header from './Header'
 
 import './App.css'
 
 const CounterHistory = (props:any) => (
-  <div onClick={props.push} className="modal_wrapper">
-    {props.history}
-    dfsafsadf
+  <div>
+    <Header/>
+    <div onClick={props.push}>
+      {props.history.map((moment:any,index:number) => {
+        return <p key={index}>{moment}</p>
+      })}
+      {props.history.map}
+    </div>
   </div>
 )
 

@@ -4,9 +4,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { changefunc, decrement, increment } from '../actions/counter'
 import { logoutMove } from '../actions/user'
+import Header from './Header'
 
 const Counter = (props:any) => (
   <div>
+    <Header />
     Counter: {props.num}
     {props.isPlusmode && <button onClick={props.increment}>+</button> }
     {!props.isPlusmode && <button onClick={props.decrement}>-</button> }

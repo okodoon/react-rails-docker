@@ -34,22 +34,20 @@ class FormContainer extends React.Component<any, Status> {
   public render(){
     return(
       <div>
+        <h1>サインイン</h1>
       <form>
         <FormGroup controlId="formBasicText">
-          email
           <FormControl
             type="email"
             value={this.state.email}
-            placeholder="Enter text"
+            placeholder="Eメール"
             // tslint:disable-next-line:jsx-no-lambda
             onChange={ (e:any) => this.onChangetext(e, "email") }
           />
-          <br />
-          password
           <FormControl
             type="password"
             value={this.state.password}
-            placeholder="Enter text"
+            placeholder="パスワード"
             // tslint:disable-next-line:jsx-no-lambda
             onChange={ (e:any) => this.onChangetext(e, "password") }
           />
@@ -57,6 +55,8 @@ class FormContainer extends React.Component<any, Status> {
 
       </form>
       <Button type="submit" onClick={ (e:any) => this.hundleSubmit(e, "login") }>ログイン</Button>
+      <p>email: test@example.com</p>
+      <p>password: password</p>
       </div>
     )
   }
