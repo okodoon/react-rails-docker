@@ -36,12 +36,19 @@ export const login = (email:string, password:string) => {
   return (dispatch:any) => {
     dispatch(PostsRequest())
     return axios.post(`http://localhost:3000/v1/users/signin`, {email, password})
-      .then((res: { data: any; }) =>
-        dispatch(PostsSuccess(res.data)),
+      .then((res: { data: any; }) => {
+        dispatch(PostsSuccess(res.data))
         dispatch(push('/counter'))
-      ).catch(err => 
+      }).catch(err => {
         dispatch(PostsFailure(err))
-      )
+      })
+  }
+}
+
+export const loginMove = () => {
+  return  (dispatch:any) => {
+    dispatch(logout())
+    dispatch(push('/counter'))
   }
 }
 

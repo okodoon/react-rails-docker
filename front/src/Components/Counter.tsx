@@ -9,11 +9,27 @@ import Header from './Header'
 const Counter = (props:any) => (
   <div>
     <Header />
-    Counter: {props.num}
-    {props.isPlusmode && <button onClick={props.increment}>+</button> }
-    {!props.isPlusmode && <button onClick={props.decrement}>-</button> }
-
-    <button onClick={props.changefunc}>押してみ</button>
+    {(() => {
+      if (props.isPlusmode) {
+        return (
+          <div>
+            <span>ADD</span>
+            <button onClick={props.increment}>+</button>
+            <br/>
+            <button onClick={props.changefunc}>+ => -</button>
+          </div>
+        )
+      } else {
+        return (
+          <div>
+            <span>REDUCE</span>
+            <button onClick={props.decrement}>-</button>
+            <br/>
+            <button onClick={props.changefunc}>- => +</button>
+          </div>
+        )
+      }
+    })()}
     <br/>
     <button onClick={props.push}>履歴ページ</button>
     <br/>
