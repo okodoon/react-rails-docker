@@ -15,17 +15,15 @@ const Header = (props:HeaderProps) => (
 )
 
 interface StateProps {
-  count: {
-    num: number
-  }
   post: {
-    name: string
+    name: string,
+    count: {num: number}
   }
 }
 
 const mapStateToProps = (state:StateProps) => ({
   name: state.post.name,
-  num: state.count.num,
+  num: state.post.count.num,
 })
 
 const mapDispatchToProps = (dispatch: React.Dispatch<Action>) => ({

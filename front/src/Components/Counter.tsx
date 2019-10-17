@@ -54,13 +54,15 @@ Counter.propTypes = {
 }
 
 interface StateProps {
-  count: {
-    isPlusmode: boolean,
+  post: {
+    count: {
+      isPlusmode: boolean,
+    }
   }
 }
 
 const mapStateToProps = (state:StateProps) => ({
-  isPlusmode: state.count.isPlusmode,
+  isPlusmode: state.post.count.isPlusmode,
 })
 
 const mapDispatchToProps = (dispatch: React.Dispatch<Action>) => ({

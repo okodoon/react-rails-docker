@@ -68,15 +68,17 @@ class FormContainer extends React.Component<FormContainerProps, Status> {
 }
 
 interface StateProps {
-  count: {
-    isPlusmode: boolean,
-    num: number
+  post: {
+    count: {
+      isPlusmode: boolean,
+      num: number
+    }
   }
 }
 
 const mapStateToProps = (state:StateProps) => ({
-  isPlusmode: state.count.isPlusmode,
-  num: state.count.num,
+  isPlusmode: state.post.count.isPlusmode,
+  num: state.post.count.num,
 })
 
 const mapDispatchToProps = (dispatch: React.Dispatch<any>) => ({

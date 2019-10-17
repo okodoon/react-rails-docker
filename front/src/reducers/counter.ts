@@ -3,7 +3,7 @@ export interface CounterState {
   isPlusmode: boolean,
   history: string[],
 }
-const COUNTER_INITIAL_STATE = {
+export const COUNTER_INITIAL_STATE = {
   history: [],
   isPlusmode: true,
   num: 0,
