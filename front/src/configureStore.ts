@@ -6,10 +6,9 @@ import createRootReducer from './reducers'
 
 export const history = createBrowserHistory()
 
-export default function configureStore(preloadedState:any) {
+export default function configureStore() {
   const store = createStore(
     createRootReducer(history),
-    preloadedState,
     applyMiddleware(
       routerMiddleware(history),
       thunk

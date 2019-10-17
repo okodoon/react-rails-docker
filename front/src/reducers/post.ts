@@ -2,6 +2,13 @@ import {
   LOG_OUT, POSTS_FAILURE, POSTS_REQUEST, POSTS_SUCCESS
 } from '../actions/user'
 
+interface PostState {
+  email: string,
+  isLoggedIn: boolean,
+  name: string,
+  token: string,
+}
+
 const initalState = {
   email: "",
   isLoggedIn: false,
@@ -9,7 +16,23 @@ const initalState = {
   token: "",
 }
 
-const postReducer = (state:any = [initalState], action:any) => {    
+type Actions = {
+  type: "POSTS_REQUEST";
+} | {
+  type: "POSTS_SUCCESS",
+  posts: {
+    email: string,
+    isLoggedIn: boolean,
+    name: string,
+    token: string
+  }
+} | {
+  type: "POSTS_FAILURE";
+} | {
+  type: "LOG_OUT";
+}
+
+const postReducer = (state:PostState = initalState, action:Actions) => {    
   switch (action.type) {
     case POSTS_REQUEST:
       return {

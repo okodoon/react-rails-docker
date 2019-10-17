@@ -9,10 +9,18 @@ const COUNTER_INITIAL_STATE = {
   num: 0,
 };
 
+type Actions = {
+  type: "INCREMENT";
+} | {
+  type: "DECREMENT";
+} | {
+  type: "CHANGEFUNC";
+}
+
 const plusMessage = `足したにゃ`
 const minusMessage = `引いたにゃ`
 
-export const counterReducer = (state: CounterState = COUNTER_INITIAL_STATE, action:any): any => {
+export const counterReducer = (state: CounterState = COUNTER_INITIAL_STATE, action:Actions) => {
   const dt = new Date()
   switch (action.type) {
     case 'INCREMENT':

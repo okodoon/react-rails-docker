@@ -8,8 +8,13 @@ interface Status {
   password: string,
   message: string
 }
-class FormContainer extends React.Component<any, Status> {
-  constructor(props:any) {
+
+interface FormContainerProps {
+  login(email: string, password: string): void
+}
+
+class FormContainer extends React.Component<FormContainerProps, Status> {
+  constructor(props:FormContainerProps) {
     super(props)
     this.state = {
       email: '',
@@ -18,14 +23,14 @@ class FormContainer extends React.Component<any, Status> {
     }
   }
 
-  public onChangetext = (e:any, type:string) => {
+  public onChangetext = (e: React.ChangeEvent<HTMLInputElement>, type:string) => {
     if(type === "email"){
       this.setState({email: e.target.value})
     }else if(type === "password") {
       this.setState({password: e.target.value})
     }
   }
-  public hundleSubmit = (e:any, type:string):void => {
+  public hundleSubmit = (type:string):void => {
     if(type === "login"){
       this.props.login(this.state.email, this.state.password)
     }
@@ -42,19 +47,19 @@ class FormContainer extends React.Component<any, Status> {
             value={this.state.email}
             placeholder="Eメール"
             // tslint:disable-next-line:jsx-no-lambda
-            onChange={ (e:any) => this.onChangetext(e, "email") }
+            onChange={ (e: React.ChangeEvent<HTMLInputElement>) => this.onChangetext(e, "email") }
           />
           <FormControl
             type="password"
             value={this.state.password}
             placeholder="パスワード"
             // tslint:disable-next-line:jsx-no-lambda
-            onChange={ (e:any) => this.onChangetext(e, "password") }
+            onChange={ (e: React.ChangeEvent<HTMLInputElement>) => this.onChangetext(e, "password") }
           />
         </FormGroup>
 
       </form>
-      <Button type="submit" onClick={ (e:any) => this.hundleSubmit(e, "login") }>ログイン</Button>
+      <Button type="submit" onClick={ () => this.hundleSubmit("login") }>ログイン</Button>
       <p>email: test@example.com</p>
       <p>password: password</p>
       </div>
@@ -62,12 +67,19 @@ class FormContainer extends React.Component<any, Status> {
   }
 }
 
-const mapStateToProps = (state:any) => ({
+interface StateProps {
+  count: {
+    isPlusmode: boolean,
+    num: number
+  }
+}
+
+const mapStateToProps = (state:StateProps) => ({
   isPlusmode: state.count.isPlusmode,
   num: state.count.num,
 })
 
-const mapDispatchToProps = (dispatch:any) => ({
+const mapDispatchToProps = (dispatch: React.Dispatch<any>) => ({
   login: (email:string, password:string) => dispatch(login(email, password)),
 })
 

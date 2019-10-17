@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import configureStore, {history} from './configureStore'
 
-const store = configureStore({})
+const store = configureStore()
 
 store.subscribe(() =>
   console.log(store.getState())

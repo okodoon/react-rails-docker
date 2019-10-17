@@ -2,11 +2,21 @@ import { push } from 'connected-react-router'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
+import { Action } from 'redux';
 import { changefunc, decrement, increment } from '../actions/counter'
-import { logoutMove } from '../actions/user'
+import { logout } from '../actions/user'
 import Header from './Header'
 
-const Counter = (props:any) => (
+interface CounterProps {
+  isPlusmode: boolean,
+  increment(): void,
+  decrement(): void,
+  changefunc(): void,
+  logout(): void,
+  push():void
+}
+
+const Counter = (props:CounterProps) => (
   <div>
     <Header />
     {(() => {
@@ -43,16 +53,24 @@ Counter.propTypes = {
   increment: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = (state:any) => ({
+interface StateProps {
+  count: {
+    isPlusmode: boolean,
+  }
+}
+
+const mapStateToProps = (state:StateProps) => ({
   isPlusmode: state.count.isPlusmode,
-  num: state.count.num,
 })
 
-const mapDispatchToProps = (dispatch:any) => ({
+const mapDispatchToProps = (dispatch: React.Dispatch<Action>) => ({
   changefunc: () => dispatch(changefunc()),
   decrement: () => dispatch(decrement()),
   increment: () => dispatch(increment()),
-  logout: () => dispatch(logoutMove()),
+  logout: () => {
+    dispatch(logout())
+    dispatch(push('/login'))
+  },
   push: () => dispatch(push('/history')),
 })
 

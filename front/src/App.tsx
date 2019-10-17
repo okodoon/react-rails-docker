@@ -16,16 +16,3 @@ const App = ({history}: AppProps) => {
 }
 
 export default App
-
-/*
-const Top = (props:any) => (
-  <button onClick={props.pushClicked}>button</button>
-)
-const Second = () => (
-  <p>second page</p>
-)
-
-const mapDispatchToProps = {
-  pushClicked: (dispatch:any) => dispatch(push("/second")),
-}
-const TopContainer = connect(null, mapDispatchToProps)(Top) */
