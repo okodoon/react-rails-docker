@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Action } from 'redux';
 import { changefunc, decrement, increment } from '../actions/counter'
 import { logout } from '../actions/user'
+import configureStore from '../configureStore'
 import Header from './Header'
 
 interface CounterProps {
@@ -53,17 +54,22 @@ Counter.propTypes = {
   increment: PropTypes.func.isRequired,
 }
 
-interface StateProps {
-  post: {
-    count: {
-      isPlusmode: boolean,
+const Xstore = configureStore()
+export type AppState = ReturnType<typeof Xstore.getState>
+
+const mapStateToProps = (state: AppState) => {
+  const index = state.post.findIndex(obj => obj.isLoggedIn === true);
+  if(index > -1){
+    return {
+      isPlusmode: state.post[index].count.isPlusmode,
+    }
+  } else {
+    return {
+      isPlusmode: false
     }
   }
-}
 
-const mapStateToProps = (state:StateProps) => ({
-  isPlusmode: state.post.count.isPlusmode,
-})
+}
 
 const mapDispatchToProps = (dispatch: React.Dispatch<Action>) => ({
   changefunc: () => dispatch(changefunc()),

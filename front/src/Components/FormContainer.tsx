@@ -67,22 +67,9 @@ class FormContainer extends React.Component<FormContainerProps, Status> {
   }
 }
 
-interface StateProps {
-  post: {
-    count: {
-      isPlusmode: boolean,
-      num: number
-    }
-  }
-}
-
-const mapStateToProps = (state:StateProps) => ({
-  isPlusmode: state.post.count.isPlusmode,
-  num: state.post.count.num,
-})
 
 const mapDispatchToProps = (dispatch: React.Dispatch<any>) => ({
   login: (email:string, password:string) => dispatch(login(email, password)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormContainer)
+export default connect(null,mapDispatchToProps)(FormContainer)

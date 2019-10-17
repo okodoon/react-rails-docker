@@ -2,6 +2,7 @@ import { push } from 'connected-react-router'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Action } from 'redux';
+import configureStore from '../configureStore'
 
 interface HeaderProps {
   name: string,
@@ -14,17 +15,23 @@ const Header = (props:HeaderProps) => (
   </div>
 )
 
-interface StateProps {
-  post: {
-    name: string,
-    count: {num: number}
+const Xstore = configureStore()
+export type AppState = ReturnType<typeof Xstore.getState>
+
+const mapStateToProps = (state:AppState) => {
+  const index = state.post.findIndex(obj => obj.isLoggedIn === true);
+  if(index > -1){
+    return {
+      name: state.post[index].name,
+      num: state.post[index].count.num,
+    }
+  } else {
+    return {
+      name: "非ログインユーザー",
+      num: 0
+    }
   }
 }
-
-const mapStateToProps = (state:StateProps) => ({
-  name: state.post.name,
-  num: state.post.count.num,
-})
 
 const mapDispatchToProps = (dispatch: React.Dispatch<Action>) => ({
   push: ()  => dispatch(push('/login'))
